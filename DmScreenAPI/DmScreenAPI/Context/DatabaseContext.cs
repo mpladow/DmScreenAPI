@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DmScreenAPI.Context.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace DmScreenAPI.Entities
         public DatabaseContext(DbContextOptions<DatabaseContext> options): base(options) { }
 
         public DbSet<Account> Accounts { get; set; }
+        public DbSet<Cheatsheet> Cheatsheets { get; set; }
     }
 }
