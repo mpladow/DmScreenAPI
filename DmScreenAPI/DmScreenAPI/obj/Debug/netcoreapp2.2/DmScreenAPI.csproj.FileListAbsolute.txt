@@ -1,0 +1,14 @@
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\bin\Debug\netcoreapp2.2\DmScreenAPI.deps.json
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\bin\Debug\netcoreapp2.2\DmScreenAPI.runtimeconfig.json
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\bin\Debug\netcoreapp2.2\DmScreenAPI.runtimeconfig.dev.json
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\bin\Debug\netcoreapp2.2\DmScreenAPI.dll
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.csprojAssemblyReference.cache
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.csproj.CoreCompileInputs.cache
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.RazorAssemblyInfo.cache
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.RazorAssemblyInfo.cs
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.AssemblyInfoInputs.cache
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.AssemblyInfo.cs
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.RazorTargetAssemblyInfo.cache
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\bin\Debug\netcoreapp2.2\DmScreenAPI.pdb
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.dll
+C:\Users\Michael\Projects\DmScreenAPI\DmScreenAPI\DmScreenAPI\obj\Debug\netcoreapp2.2\DmScreenAPI.pdb
