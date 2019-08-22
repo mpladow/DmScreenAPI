@@ -13,5 +13,6 @@ namespace DmScreenAPI.Entities
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Cheatsheet> Cheatsheets { get; set; }
+        public DbSet<Resource> Resources { get; set; }
     }
 }

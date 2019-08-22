@@ -1,0 +1,16 @@
+{
+  "FilePath": "c:\\Users\\Michael\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-2.1",
+    "LanguageVersion": "2.1",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-2.1"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": null,
+  "RootNamespace": "DmScreenAPI",
+  "Documents": [],
+  "SerializationFormat": "0.1"
+}
