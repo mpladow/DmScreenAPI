@@ -43,9 +43,9 @@ namespace DmScreenAPI.Controllers
                 return BadRequest();
             }
             var dto = _mapper.Map<ResourceDto>(resourceInDb);
-            return Ok();
+            return Ok(dto);
         }
-        [HttpPost]
+        [HttpPost("edit")]
         public ActionResult Edit(ResourceDto resourceDto)
         {
             var resourceinDb = _db.Resources.FirstOrDefault(r => r.Id == resourceDto.Id);

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAOBO5bWV+WUqBoQ2/UF5UMQAAAAACAAAAAAAQZgAAAAEAACAAAADKG2/tOrcr+L8rQUris0z1rjdGt/UvdfyCbcyoAFBsUAAAAAAOgAAAAAIAACAAAADuVtJrjbJIpVcgqProqxUH8lj1YEhQjsvDhDuc+TNyfYAAAABUykJ/GTejVFDBenr3MuO83MnDXmGcU/eIA97ptzyVOyuic8h3qZbMsRMEPCpqEz3m8V0IxvC11s9W61qHBqQK2daR/gknnlzpoFytHBWGpusR/If27Q1UQkhtMmyb2IDswPp81+PLT1ZzZiACxXMu3b7NiM9h54OrP24MRcn0dUAAAADG1hzy4BSUmToXY6WzCxRGAeaKrbderor7NlwGEcY4ECtkW0Vw1Sz1My61iLQ8xlcwiC5ScA0YuhBhE2qb3G2E</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="Development">
+      <Value>Server=tcp:testservermld.database.windows.net,1433%3bDatabase=DnDResources%3bUser ID=michael.ladow%3bPassword=08029108Mld1!%3bEncrypt=true%3bConnection Timeout=30%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

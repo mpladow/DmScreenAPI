@@ -34,6 +34,69 @@ namespace DmScreenAPI.Migrations
                     b.ToTable("Cheatsheets");
                 });
 
+            modelBuilder.Entity("DmScreenAPI.Context.Entities.Creature", b =>
+                {
+                    b.Property<int>("CreatureId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AC");
+
+                    b.Property<int?>("CR");
+
+                    b.Property<int>("Charisma");
+
+                    b.Property<int?>("CharismaBonus");
+
+                    b.Property<string>("Class");
+
+                    b.Property<int>("Constitution");
+
+                    b.Property<int?>("ConstitutionBonus");
+
+                    b.Property<int>("Dexterity");
+
+                    b.Property<int?>("DexterityBonus");
+
+                    b.Property<string>("Image");
+
+                    b.Property<int>("Initiative");
+
+                    b.Property<int?>("InitiativeBonus");
+
+                    b.Property<int?>("Level");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Notes");
+
+                    b.Property<int>("PInsight");
+
+                    b.Property<int>("PInvestigation");
+
+                    b.Property<int>("PPerception");
+
+                    b.Property<int?>("ProficiencyBonus");
+
+                    b.Property<string>("Race");
+
+                    b.Property<int>("Speed");
+
+                    b.Property<int>("Strength");
+
+                    b.Property<int?>("StrengthBonus");
+
+                    b.Property<int>("Wisdom");
+
+                    b.Property<int?>("WisdomBonus");
+
+                    b.Property<bool>("isHostile");
+
+                    b.HasKey("CreatureId");
+
+                    b.ToTable("Creatures");
+                });
+
             modelBuilder.Entity("DmScreenAPI.Context.Entities.Resource", b =>
                 {
                     b.Property<int>("Id")
