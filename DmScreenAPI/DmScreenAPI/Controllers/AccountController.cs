@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using DmScreenAPI.Context.Entities;
 using DmScreenAPI.Dtos;
 using DmScreenAPI.Entities;
+using DmScreenAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DmScreenAPI.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ResourcesController : ControllerBase
+    public class AccountController : Controller
     {
         private readonly DatabaseContext _db;
         private readonly IMapper _mapper;
-
-        public ResourcesController(DatabaseContext db, IMapper mapper)
+        public AccountController(DatabaseContext db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
@@ -26,47 +23,48 @@ namespace DmScreenAPI.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
-            var resourceList = _db.Resources.Select(r => new ResourceDto
+            var resourceList = _db.Accounts.Select(r => new AccountDto
             {
-                Id = r.Id,
-                Category = r.Category,
-                Html = r.Html
+                AccountId = r.AccountId,
+                FirstName = r.FirstName,
+                LastName = r.LastName,
+                Email = r.Email
             }).ToList();
             return Ok(resourceList);
         }
         [HttpGet("{id}")]
         public ActionResult Edit(int id)
         {
-            var resourceInDb = _db.Resources.FirstOrDefault(r => r.Id == id);
+            var resourceInDb = _db.Accounts.FirstOrDefault(r => r.AccountId == id);
             if (resourceInDb == null)
             {
                 return BadRequest();
             }
-            var dto = _mapper.Map<ResourceDto>(resourceInDb);
+            var dto = _mapper.Map<AccountDto>(resourceInDb);
             return Ok(dto);
         }
         [HttpPost("edit")]
-        public ActionResult Edit(ResourceDto resourceDto)
+        public ActionResult Edit(AccountDto accountDto)
         {
-            var resourceinDb = _db.Resources.FirstOrDefault(r => r.Id == resourceDto.Id);
-            if (resourceinDb == null)
+            var accountinDb = _db.Accounts.FirstOrDefault(r => r.AccountId == accountDto.AccountId);
+            if (accountinDb == null)
             {
-                var entity = _mapper.Map<Resource>(resourceDto);
+                var entity = _mapper.Map<Account>(accountDto);
                 _db.Add(entity);
             }
             else
             {
-                _mapper.Map(resourceDto, resourceinDb);
+                _mapper.Map(accountDto, accountinDb);
             }
             _db.SaveChanges();
             return Ok();
         }
+
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var resourceinDb = _db.Resources.FirstOrDefault(r => r.Id == id);
-            _db.Remove(resourceinDb);
+            var accountInDb = _db.Accounts.FirstOrDefault(r => r.AccountId == id);
+            _db.Remove(accountInDb);
             _db.SaveChanges();
             return Ok();
         }
