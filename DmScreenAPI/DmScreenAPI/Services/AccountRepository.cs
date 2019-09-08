@@ -1,4 +1,5 @@
-﻿using DmScreenAPI.Entities;
+﻿using DmScreenAPI.Context.Entities;
+using DmScreenAPI.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -71,6 +72,24 @@ namespace DmScreenAPI.Services
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
             }
+        }
+
+        public IEnumerable<AccountResource> GetAccountResources(int id)
+        {
+            return _db.AccountResources
+                .Where(ar => ar.AccountId == id);
+        }
+
+        public void RemoveAccountResources(IEnumerable<AccountResource> accountResources)
+        {
+            _db.RemoveRange(accountResources);
+        }
+
+        public void Add(AccountResource entity)
+        {
+            _db.AccountResources.Add(entity);
+            _db.SaveChanges();
+
         }
     }
 }

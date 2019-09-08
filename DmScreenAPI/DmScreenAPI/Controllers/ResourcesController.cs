@@ -49,18 +49,21 @@ namespace DmScreenAPI.Controllers
         [HttpPost("edit")]
         public ActionResult Edit(ResourceDto resourceDto)
         {
+            var entity = new Resource();
             var resourceinDb = _db.Resources.FirstOrDefault(r => r.Id == resourceDto.Id);
             if (resourceinDb == null)
             {
-                var entity = _mapper.Map<Resource>(resourceDto);
+                entity = _mapper.Map<Resource>(resourceDto);
                 _db.Add(entity);
+                _db.SaveChanges();
+                return Ok(entity);
             }
             else
             {
                 _mapper.Map(resourceDto, resourceinDb);
+                _db.SaveChanges();
+                return Ok(entity);
             }
-            _db.SaveChanges();
-            return Ok();
         }
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)

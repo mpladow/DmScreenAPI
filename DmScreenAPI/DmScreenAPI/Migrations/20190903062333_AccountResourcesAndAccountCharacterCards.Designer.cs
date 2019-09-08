@@ -4,14 +4,16 @@ using DmScreenAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DmScreenAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190903062333_AccountResourcesAndAccountCharacterCards")]
+    partial class AccountResourcesAndAccountCharacterCards
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,21 +36,6 @@ namespace DmScreenAPI.Migrations
                     b.HasKey("AccountCreatureCardId");
 
                     b.ToTable("AccountCreatureCards");
-                });
-
-            modelBuilder.Entity("DmScreenAPI.Context.Entities.AccountNotes", b =>
-                {
-                    b.Property<int>("AccountNotesId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("AccountId");
-
-                    b.Property<string>("Notes");
-
-                    b.HasKey("AccountNotesId");
-
-                    b.ToTable("AccountNotes");
                 });
 
             modelBuilder.Entity("DmScreenAPI.Context.Entities.AccountResource", b =>
