@@ -36,3 +36,4 @@ DmScreenAPI/DmScreenAPI/obj/Debug/netcoreapp2.2/DmScreenAPI.pdb
 DmScreenAPI/DmScreenAPI/obj/DmScreenAPI.csproj.nuget.cache
 DmScreenAPI/DmScreenAPI/obj/DmScreenAPI.csproj.nuget.g.props
 DmScreenAPI/DmScreenAPI/obj/project.assets.json
+*.cache
