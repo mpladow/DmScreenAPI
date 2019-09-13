@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace DmScreenAPI.Context.Entities
 {
-    public class Action
+    public class CreatureAction
     {
-        public int ActionId { get; set; }
+        public int CreatureActionId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

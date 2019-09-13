@@ -9,6 +9,6 @@ namespace DmScreenAPI.Context.Entities
     {
         public int CreatureCardActionId { get; set; }
         public int CreatureCardId { get; set; }
-        public int ActionId { get; set; }
+        public int CreatureActionId { get; set; }
     }
 }

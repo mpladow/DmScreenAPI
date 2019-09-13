@@ -81,10 +81,10 @@ namespace DmScreenAPI.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             //This will contain our jwt that we return to our client
-            return Ok(new
-            {
-                token = tokenHandler.WriteToken(token)
-            });
+            var sessionDto = new SessionDto();
+            sessionDto.Token = tokenHandler.WriteToken(token);
+
+            return Ok(sessionDto);
         }
     }
     

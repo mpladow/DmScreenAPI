@@ -1,9 +1,9 @@
-﻿using System;
+﻿using DmScreenAPI.Context.Entities;
 using System.Collections.Generic;
 
-namespace DmScreenAPI.Context.Entities
+namespace DmScreenAPI.Dtos
 {
-    public class CreatureCard
+    public class CreatureCardDto
     {
         public int CreatureCardId { get; set; }
         public string Name { get; set; }
@@ -26,7 +26,6 @@ namespace DmScreenAPI.Context.Entities
         public bool GreenIndicatorOn { get; set; }
         public bool BlueIndicatorOn { get; set; }
 
-        public ICollection<CreatureAction> Actions { get; set; }
-
+        public List<CreatureAction> Actions { get; set; }
     }
 }

@@ -18,6 +18,8 @@ namespace DmScreenAPI.Helpers
             CreateMap<ResourceDto, Resource>();
             CreateMap<Account, AccountDto>();
             CreateMap<AccountDto, Account>();
+            CreateMap<CreatureCardDto, CreatureCard>();
+            CreateMap<CreatureCard, CreatureCardDto>();
         }
     }
 }

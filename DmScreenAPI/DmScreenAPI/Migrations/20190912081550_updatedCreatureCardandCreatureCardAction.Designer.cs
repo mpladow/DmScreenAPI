@@ -4,14 +4,16 @@ using DmScreenAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DmScreenAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190912081550_updatedCreatureCardandCreatureCardAction")]
+    partial class updatedCreatureCardandCreatureCardAction
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,8 +95,6 @@ namespace DmScreenAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AC");
-
                     b.Property<int?>("AccountCreatureCardId");
 
                     b.Property<bool>("BlueIndicatorOn");
@@ -109,13 +109,11 @@ namespace DmScreenAPI.Migrations
 
                     b.Property<bool>("GreenIndicatorOn");
 
-                    b.Property<int>("Initiative");
+                    b.Property<int?>("Initiative");
 
                     b.Property<int?>("Intelligence");
 
                     b.Property<int>("MaxHP");
-
-                    b.Property<string>("Name");
 
                     b.Property<string>("Notes");
 
