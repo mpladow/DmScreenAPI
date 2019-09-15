@@ -58,7 +58,7 @@ namespace DmScreenAPI.Controllers
                 var accountResourceEntity = new AccountResource
                 {
                     AccountId = model.AccountId,
-                    ResourceId = model.Resources[i].Id,
+                    ResourceId = model.Resources[i].ResourceId,
                     Sequence = i
                 };
                 _accountRepository.Add(accountResourceEntity);

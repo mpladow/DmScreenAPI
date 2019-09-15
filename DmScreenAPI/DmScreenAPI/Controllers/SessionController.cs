@@ -27,19 +27,21 @@ namespace DmScreenAPI.Controllers
         {
             return null;
         }
-
+        [HttpPost("Edit")]
         public ActionResult Edit(SessionDto session)
         {
             var accountCreatureCardsInDb = _context.AccountCreatureCards.Where(acc => acc.AccountId == session.AccountId).ToList();
             var accountResourcesInDb = _context.AccountResources.Where(ar => ar.AccountId == session.AccountId).ToList();
-            if (accountCreatureCardsInDb != null)
+            if (accountCreatureCardsInDb.Count > 0)
             {
                 _context.AccountCreatureCards.RemoveRange(accountCreatureCardsInDb);
             }
-            if (accountResourcesInDb != null)
+            if (accountResourcesInDb.Count > 0)
             {
                 _context.AccountResources.RemoveRange(accountResourcesInDb);
             }
+            _context.SaveChanges();
+
             session.CreatureCards.ForEach(cc =>
             {
                 var entity = new AccountCreatureCard();
@@ -53,7 +55,7 @@ namespace DmScreenAPI.Controllers
                 var entity = new AccountResource();
 
                 entity.AccountId = session.AccountId;
-                entity.AccountResourceId = r.Id;
+                entity.ResourceId = r.ResourceId;
                 _context.AccountResources.Add(entity);
             });
 

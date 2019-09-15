@@ -20,11 +20,13 @@ namespace DmScreenAPI.Controllers
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IConfiguration _config;
+        private readonly SessionService _sessionService;
 
-        public AuthController(IAccountRepository accountService, IConfiguration config)
+        public AuthController(IAccountRepository accountService, IConfiguration config, SessionService sessionService)
         {
             _accountRepository = accountService;
             _config = config;
+            _sessionService = sessionService;
         }
         [HttpPost("register")]
         public IActionResult Register(AccountForRegisterDto model)
@@ -81,7 +83,7 @@ namespace DmScreenAPI.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             //This will contain our jwt that we return to our client
-            var sessionDto = new SessionDto();
+            var sessionDto = _sessionService.GetSessionDetails(accountFromRepo.AccountId);
             sessionDto.Token = tokenHandler.WriteToken(token);
 
             return Ok(sessionDto);

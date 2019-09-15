@@ -9,7 +9,7 @@ namespace DmScreenAPI.Dtos
     {
         public int AccountId { get; set; }
         public string Token { get; set; }
-        public List<ResourceDto> Resources { get; set; }
-        public List<CreatureCardDto> CreatureCards { get; set; }
+        public List<ResourceDto> Resources { get; set; } = new List<ResourceDto>();
+        public List<CreatureCardDto> CreatureCards { get; set; } = new List<CreatureCardDto>();
     }
 }

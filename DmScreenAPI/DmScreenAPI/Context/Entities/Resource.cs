@@ -7,7 +7,7 @@ namespace DmScreenAPI.Context.Entities
 {
     public class Resource
     {
-        public int Id { get; set; }
+        public int ResourceId { get; set; }
         public string Category { get; set; }
         public string Html { get; set; }
     }

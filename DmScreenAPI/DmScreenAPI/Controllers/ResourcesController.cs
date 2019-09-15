@@ -29,7 +29,7 @@ namespace DmScreenAPI.Controllers
 
             var resourceList = _db.Resources.Select(r => new ResourceDto
             {
-                Id = r.Id,
+                ResourceId = r.ResourceId,
                 Category = r.Category,
                 Html = r.Html
             }).ToList();
@@ -38,7 +38,7 @@ namespace DmScreenAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult Edit(int id)
         {
-            var resourceInDb = _db.Resources.FirstOrDefault(r => r.Id == id);
+            var resourceInDb = _db.Resources.FirstOrDefault(r => r.ResourceId == id);
             if (resourceInDb == null)
             {
                 return BadRequest();
@@ -50,7 +50,7 @@ namespace DmScreenAPI.Controllers
         public ActionResult Edit(ResourceDto resourceDto)
         {
             var entity = new Resource();
-            var resourceinDb = _db.Resources.FirstOrDefault(r => r.Id == resourceDto.Id);
+            var resourceinDb = _db.Resources.FirstOrDefault(r => r.ResourceId == resourceDto.ResourceId);
             if (resourceinDb == null)
             {
                 entity = _mapper.Map<Resource>(resourceDto);
@@ -68,7 +68,7 @@ namespace DmScreenAPI.Controllers
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
-            var resourceinDb = _db.Resources.FirstOrDefault(r => r.Id == id);
+            var resourceinDb = _db.Resources.FirstOrDefault(r => r.ResourceId == id);
             _db.Remove(resourceinDb);
             _db.SaveChanges();
             return Ok();
