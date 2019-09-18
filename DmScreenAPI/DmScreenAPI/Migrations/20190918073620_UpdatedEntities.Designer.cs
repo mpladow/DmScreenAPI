@@ -4,14 +4,16 @@ using DmScreenAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DmScreenAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20190918073620_UpdatedEntities")]
+    partial class UpdatedEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,10 +34,6 @@ namespace DmScreenAPI.Migrations
                     b.Property<decimal>("Sequence");
 
                     b.HasKey("AccountCreatureCardId");
-
-                    b.HasIndex("AccountId");
-
-                    b.HasIndex("CreatureCardId");
 
                     b.ToTable("AccountCreatureCards");
                 });
@@ -99,6 +97,8 @@ namespace DmScreenAPI.Migrations
 
                     b.Property<int>("AC");
 
+                    b.Property<int?>("AccountCreatureCardId");
+
                     b.Property<bool>("BlueIndicatorOn");
 
                     b.Property<int?>("Charisma");
@@ -136,6 +136,8 @@ namespace DmScreenAPI.Migrations
                     b.Property<bool>("isHostile");
 
                     b.HasKey("CreatureCardId");
+
+                    b.HasIndex("AccountCreatureCardId");
 
                     b.ToTable("CreatureCards");
                 });
@@ -180,6 +182,8 @@ namespace DmScreenAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AccountCreatureCardId");
+
                     b.Property<int?>("AccountResourceId");
 
                     b.Property<DateTime>("DateCreated");
@@ -200,29 +204,25 @@ namespace DmScreenAPI.Migrations
 
                     b.HasKey("AccountId");
 
+                    b.HasIndex("AccountCreatureCardId");
+
                     b.HasIndex("AccountResourceId");
 
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("DmScreenAPI.Context.Entities.AccountCreatureCard", b =>
-                {
-                    b.HasOne("DmScreenAPI.Entities.Account", "Account")
-                        .WithMany()
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DmScreenAPI.Context.Entities.CreatureCard", "CreatureCard")
-                        .WithMany("AccountCreatureCard")
-                        .HasForeignKey("CreatureCardId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("DmScreenAPI.Context.Entities.CreatureAction", b =>
                 {
-                    b.HasOne("DmScreenAPI.Context.Entities.CreatureCard", "CreatureCard")
+                    b.HasOne("DmScreenAPI.Context.Entities.CreatureCard")
                         .WithMany("Actions")
                         .HasForeignKey("CreatureCardId");
+                });
+
+            modelBuilder.Entity("DmScreenAPI.Context.Entities.CreatureCard", b =>
+                {
+                    b.HasOne("DmScreenAPI.Context.Entities.AccountCreatureCard")
+                        .WithMany("CreatureCards")
+                        .HasForeignKey("AccountCreatureCardId");
                 });
 
             modelBuilder.Entity("DmScreenAPI.Context.Entities.Resource", b =>
@@ -234,6 +234,10 @@ namespace DmScreenAPI.Migrations
 
             modelBuilder.Entity("DmScreenAPI.Entities.Account", b =>
                 {
+                    b.HasOne("DmScreenAPI.Context.Entities.AccountCreatureCard")
+                        .WithMany("Resources")
+                        .HasForeignKey("AccountCreatureCardId");
+
                     b.HasOne("DmScreenAPI.Context.Entities.AccountResource")
                         .WithMany("Accounts")
                         .HasForeignKey("AccountResourceId");

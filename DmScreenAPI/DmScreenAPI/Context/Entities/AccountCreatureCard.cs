@@ -16,7 +16,7 @@ namespace DmScreenAPI.Context.Entities
         public int AccountId { get; set; }
         public int CreatureCardId { get; set; }
         public decimal Sequence { get; set; }
-        public ICollection<CreatureCard> CreatureCards { get; set; }
-        public ICollection<Account> Resources { get; set; }
+        public CreatureCard CreatureCard { get; set; }
+        public Account Account { get; set; }
     }
 }

@@ -23,19 +23,34 @@ namespace DmScreenAPI.Services
         public SessionDto GetSessionDetails(int id)
         {
             var sessionDto = new SessionDto();
+            //var cardActions = _db.CreatureAction.Where(ca => ca.CreatureCard.AccountCreatureCard.Any(acc => acc.AccountId == id)).;
             var creatureCards = _db.AccountCreatureCards
-                .Where(ac => ac.AccountId == id)
-                .Include(x=> x.CreatureCards)
-                .ToList();
-            if (creatureCards.Count != 0)
+                .Where(cc => cc.AccountId == id)
+                .Include(x => x.CreatureCard.Actions)
+            .Select(cc => new CreatureCardDto()
             {
-                creatureCards.ForEach(cc =>
-                {
-                    var creatureCard = _db.CreatureCards.FirstOrDefault(x => x.CreatureCardId == cc.CreatureCardId);
-                    var dto = _mapper.Map<CreatureCardDto>(creatureCard);
-                    sessionDto.CreatureCards.Add(dto);
-                });
-            }
+                Name = cc.CreatureCard.Name,
+                AC = cc.CreatureCard.AC,
+                Initiative = cc.CreatureCard.Initiative,
+                isHostile =cc.CreatureCard.isHostile,
+                CurrentHP = cc.CreatureCard.CurrentHP,
+                MaxHP = cc.CreatureCard.MaxHP,
+                PPerception = cc.CreatureCard.PPerception,
+                PInsight = cc.CreatureCard.PInsight,
+                PInvestigation = cc.CreatureCard.PInvestigation,
+                Strength = cc.CreatureCard.Strength,
+                Dexterity = cc.CreatureCard.Dexterity,
+                Wisdom = cc.CreatureCard.Wisdom,
+                Intelligence = cc.CreatureCard.Intelligence,
+                Constitution = cc.CreatureCard.Constitution,
+                Notes = cc.CreatureCard.Notes,
+                RedIndicatorOn = cc.CreatureCard.RedIndicatorOn,
+                GreenIndicatorOn = cc.CreatureCard.GreenIndicatorOn,
+                BlueIndicatorOn = cc.CreatureCard.BlueIndicatorOn,
+                Actions = cc.CreatureCard.Actions
+            }).ToList();
+            sessionDto.CreatureCards.AddRange(creatureCards);
+
             var resources = _db.AccountResources
                 .Where(ar => ar.AccountId == id)
                 .Include(i => i.Resources)

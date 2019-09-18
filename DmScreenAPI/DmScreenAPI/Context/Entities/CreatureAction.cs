@@ -10,5 +10,6 @@ namespace DmScreenAPI.Context.Entities
         public int CreatureActionId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public CreatureCard CreatureCard { get; set; }
     }
 }

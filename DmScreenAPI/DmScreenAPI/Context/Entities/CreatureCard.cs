@@ -26,7 +26,8 @@ namespace DmScreenAPI.Context.Entities
         public bool GreenIndicatorOn { get; set; }
         public bool BlueIndicatorOn { get; set; }
 
-        public ICollection<CreatureAction> Actions { get; set; }
+        public List<CreatureAction> Actions { get; set; }
+        public List<AccountCreatureCard> AccountCreatureCard { get; set; }
 
     }
 }
