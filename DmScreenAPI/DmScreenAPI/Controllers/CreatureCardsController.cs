@@ -16,12 +16,12 @@ namespace DmScreenAPI.Controllers
     [ApiController]
     public class CreatureCardsController : ControllerBase
     {
-        private readonly DatabaseContext _context;
+        private readonly DatabaseContext _db;
         private readonly IMapper _mapper;
 
         public CreatureCardsController(DatabaseContext context, IMapper mapper)
         {
-            _context = context;
+            _db = context;
             _mapper = mapper;
         }
 
@@ -29,14 +29,15 @@ namespace DmScreenAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CreatureCard>>> GetCreatureCards()
         {
-            return await _context.CreatureCards.ToListAsync();
+            var xx = await _db.CreatureCards.Where(cc => cc.isHostile).ToListAsync();
+            return await _db.CreatureCards.Where(cc => cc.isHostile).ToListAsync();
         }
 
         // GET: api/CreatureCards/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CreatureCard>> GetCreatureCard(int id)
         {
-            var creatureCard = await _context.CreatureCards.FindAsync(id);
+            var creatureCard = await _db.CreatureCards.FindAsync(id);
 
             if (creatureCard == null)
             {
@@ -49,78 +50,81 @@ namespace DmScreenAPI.Controllers
 
         // POST: api/CreatureCards
         [HttpPost("edit")]
-        public async Task<ActionResult<CreatureCard>> Edit(CreatureCardDto creatureCard)
+        public async Task<ActionResult<CreatureCardDto>> Edit(CreatureCardDto creatureCard)
         {
             var idToReturn = 0;
-            var creatureToReturn = new CreatureCard();
-            var creatureCardInDb = _context.CreatureCards.FirstOrDefault(cc => cc.CreatureCardId == creatureCard.CreatureCardId);
+            var creatureCardInDb = _db.CreatureCards.FirstOrDefault(cc => cc.CreatureCardId == creatureCard.CreatureCardId);
             if (creatureCardInDb != null)
             {
                 // edit this creature card
                 _mapper.Map(creatureCard, creatureCardInDb);
-                var added = creatureCard.Actions.Except(creatureCardInDb.Actions).ToList();
-                var deleted = creatureCardInDb.Actions.Except(creatureCard.Actions).ToList();
-                added.ForEach(a =>
+                creatureCard.Actions.ForEach(a =>
                 {
+                    // remove all existing creatureCard Entries
+                    var action = new CreatureAction();
+                    action.Name = a.Name;
+                    action.Description = a.Description;
+                    _db.CreatureAction.Add(action);
+                    _db.SaveChanges();
+                    var actionsToRemove = _db.CreatureCardActions.Where(cca => cca.CreatureCardId == creatureCard.CreatureCardId).ToList();
+                    _db.CreatureCardActions.RemoveRange(actionsToRemove);
+                    //add entry to linking table
                     var creatureCardAction = new CreatureCardAction();
-                    creatureCardAction.CreatureActionId = a.CreatureActionId;
-                    creatureCardAction.CreatureCardId = creatureCardInDb.CreatureCardId;
-                    _context.CreatureCardActions.Add(creatureCardAction);
-                });
-                deleted.ForEach(d =>
-                {
-                    var creatureCardActionInDb = _context.CreatureCardActions.Where(cca => cca.CreatureActionId == d.CreatureActionId).FirstOrDefault();
-                    _context.CreatureCardActions.Remove(creatureCardActionInDb);
+                    creatureCardAction.CreatureActionId = action.CreatureActionId;
+                    creatureCardAction.CreatureCardId = creatureCard.CreatureCardId;
+                    _db.CreatureCardActions.Add(creatureCardAction);
                 });
                 idToReturn = creatureCardInDb.CreatureCardId;
-                creatureToReturn = creatureCardInDb;
+                creatureCard.CreatureCardId = creatureCardInDb.CreatureCardId;
+
             }
             else
             {
                 var creature = _mapper.Map<CreatureCard>(creatureCard);
-                _context.CreatureCards.Add(creature);
-                _context.SaveChanges();
+                
+                _db.CreatureCards.Add(creature);
+                _db.CreatureAction.AddRange(creature.Actions);
+                _db.SaveChanges();
                 // add the actions to the creature card
-                creatureCard.Actions.ForEach(a =>
+                creature.Actions.ForEach(a =>
                 {
-                    var action = new CreatureAction();
-                    action.Name = a.Name;
-                    action.Description = a.Description;
-                    _context.CreatureAction.Add(action);
-                    _context.SaveChanges();
+                    //var action = new CreatureAction();
+                    //action.Name = a.Name;
+                    //action.Description = a.Description;
+                    //_db.CreatureAction.Add(action);
+                    _db.SaveChanges();
                     //add entry to linking table
                     var creatureCardAction = new CreatureCardAction();
-                    creatureCardAction.CreatureActionId = action.CreatureActionId;
+                    creatureCardAction.CreatureActionId = a.CreatureActionId;
                     creatureCardAction.CreatureCardId = creature.CreatureCardId;
-                    _context.CreatureCardActions.Add(creatureCardAction);
+                    _db.CreatureCardActions.Add(creatureCardAction);
                 });
                 idToReturn = creature.CreatureCardId;
-                creatureToReturn = creature;
             }
-            await _context.SaveChangesAsync();
+            _db.SaveChanges();
 
-            return CreatedAtAction("Edit", new { id = idToReturn}, creatureToReturn);
+            return CreatedAtAction("Edit", new { id = idToReturn}, creatureCard);
         }
 
         // DELETE: api/CreatureCards/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<CreatureCard>> DeleteCreatureCard(int id)
         {
-            var creatureCard = await _context.CreatureCards.FindAsync(id);
+            var creatureCard = await _db.CreatureCards.FindAsync(id);
             if (creatureCard == null)
             {
                 return NotFound();
             }
 
-            _context.CreatureCards.Remove(creatureCard);
-            await _context.SaveChangesAsync();
+            _db.CreatureCards.Remove(creatureCard);
+            await _db.SaveChangesAsync();
 
             return creatureCard;
         }
 
         private bool CreatureCardExists(int id)
         {
-            return _context.CreatureCards.Any(e => e.CreatureCardId == id);
+            return _db.CreatureCards.Any(e => e.CreatureCardId == id);
         }
     }
 }

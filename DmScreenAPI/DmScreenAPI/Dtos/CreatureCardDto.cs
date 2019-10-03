@@ -26,6 +26,6 @@ namespace DmScreenAPI.Dtos
         public bool GreenIndicatorOn { get; set; }
         public bool BlueIndicatorOn { get; set; }
 
-        public List<CreatureAction> Actions { get; set; }
+        public List<CreatureActionDto> Actions { get; set; }
     }
 }

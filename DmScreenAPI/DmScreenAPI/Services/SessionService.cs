@@ -47,8 +47,9 @@ namespace DmScreenAPI.Services
                 RedIndicatorOn = cc.CreatureCard.RedIndicatorOn,
                 GreenIndicatorOn = cc.CreatureCard.GreenIndicatorOn,
                 BlueIndicatorOn = cc.CreatureCard.BlueIndicatorOn,
-                Actions = cc.CreatureCard.Actions
+                Actions = _mapper.Map<List<CreatureActionDto>>(cc.CreatureCard.Actions)
             }).ToList();
+            //add the actions
             sessionDto.CreatureCards.AddRange(creatureCards);
 
             var resources = _db.AccountResources
