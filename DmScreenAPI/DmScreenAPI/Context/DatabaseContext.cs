@@ -21,6 +21,7 @@ namespace DmScreenAPI.Entities
         public DbSet<AccountCreatureCard> AccountCreatureCards { get; set; }
         public DbSet<AccountResource> AccountResources { get; set; }
         public DbSet<AccountNotes> AccountNotes { get; set; }
+        public DbSet<ManualItem> ManualItems { get; set; }
 
 
     }

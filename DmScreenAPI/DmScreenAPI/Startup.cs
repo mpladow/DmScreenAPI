@@ -49,6 +49,7 @@ namespace DmScreenAPI
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<SessionService>();
+            services.AddSingleton<UtilitiesService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {

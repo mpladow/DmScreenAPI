@@ -100,6 +100,7 @@ namespace DmScreenAPI.Controllers
                     _db.CreatureCardActions.Add(creatureCardAction);
                 });
                 idToReturn = creature.CreatureCardId;
+                creatureCard.CreatureCardId = creature.CreatureCardId;
             }
             _db.SaveChanges();
 
