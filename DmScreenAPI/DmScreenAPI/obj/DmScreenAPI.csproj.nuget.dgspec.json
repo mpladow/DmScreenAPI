@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Michael\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj": {}
+    "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Michael\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj": {
+    "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Michael\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
+        "projectUniqueName": "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
         "projectName": "DmScreenAPI",
-        "projectPath": "C:\\Users\\Michael\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
-        "packagesPath": "C:\\Users\\Michael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Michael\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\obj\\",
+        "projectPath": "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
+        "packagesPath": "C:\\Users\\mplad\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Michael\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\mplad\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

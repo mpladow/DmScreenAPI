@@ -19,6 +19,12 @@ namespace DmScreenAPI.Controllers
         private readonly DatabaseContext _db;
         private readonly IMapper _mapper;
         private readonly UtilitiesService _utilities;
+
+        public ManualController(DatabaseContext context, IMapper mapper, UtilitiesService utilities)
+        {
+            _db = context;
+            _mapper = mapper;
+        }
         // GET: api/Manual
         [HttpGet]
         public IActionResult Get()
