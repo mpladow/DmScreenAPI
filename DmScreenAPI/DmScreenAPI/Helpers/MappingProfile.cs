@@ -26,7 +26,7 @@ namespace DmScreenAPI.Helpers
             CreateMap<CreatureActionDto, CreatureAction>();
 
             CreateMap<List<ManualItem>, List<ManualItemDto>>();
-            CreateMap < List<ManualItemDto>, List<ManualItem>>();
+            CreateMap<List<ManualItemDto>, List<ManualItem>>();
 
 
         }

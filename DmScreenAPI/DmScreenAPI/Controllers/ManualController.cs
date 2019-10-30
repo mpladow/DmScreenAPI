@@ -24,6 +24,7 @@ namespace DmScreenAPI.Controllers
         {
             _db = context;
             _mapper = mapper;
+            _utilities = utilities;
         }
         // GET: api/Manual
         [HttpGet]
@@ -31,9 +32,14 @@ namespace DmScreenAPI.Controllers
         {
             var query = _db.ManualItems.Where(mi => mi.DeletedAt == null)
                 .ToList();
-            var dto = new List<ManualItemDto>();
-            _mapper.Map(query, dto);
-            return Ok(dto);
+            var dtoList = new List<ManualItemDto>();
+            query.ForEach(mi =>
+            {
+                var dto = new ManualItemDto();
+                _utilities.AutoMap(ref dto, mi);
+                dtoList.Add(dto);
+            });
+            return Ok(dtoList);
         }
 
         // GET: api/Manual/5
@@ -67,7 +73,8 @@ namespace DmScreenAPI.Controllers
             else
             {
                 var entity = new ManualItem();
-                _mapper.Map(model, entity);
+                //_mapper.Map(model, entity);
+                _utilities.AutoMap(ref entity, model);
                 _db.Add(entity);
                 _db.SaveChanges();
                 model.ManualItemId = entity.ManualItemId;
