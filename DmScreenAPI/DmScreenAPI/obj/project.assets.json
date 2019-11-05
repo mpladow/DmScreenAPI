@@ -13064,23 +13064,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Michael.LaDow\\.nuget\\packages\\": {},
+    "C:\\Users\\mplad\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Michael.LaDow\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
+      "projectUniqueName": "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
       "projectName": "DmScreenAPI",
-      "projectPath": "C:\\Users\\Michael.LaDow\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
-      "packagesPath": "C:\\Users\\Michael.LaDow\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Michael.LaDow\\Projects\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\obj\\",
+      "projectPath": "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI.csproj",
+      "packagesPath": "C:\\Users\\mplad\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mplad\\repo\\DmScreenAPI\\DmScreenAPI\\DmScreenAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Michael.LaDow\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mplad\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13136,7 +13136,7 @@
             "version": "[2.2.6, )"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
-            "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
             "version": "[2.2.6, )"

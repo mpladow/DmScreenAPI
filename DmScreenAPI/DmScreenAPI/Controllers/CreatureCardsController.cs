@@ -29,8 +29,8 @@ namespace DmScreenAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CreatureCard>>> GetCreatureCards()
         {
-            var xx = await _db.CreatureCards.Where(cc => cc.isHostile).ToListAsync();
-            return await _db.CreatureCards.Where(cc => cc.isHostile).ToListAsync();
+            var xx = await _db.CreatureCards.ToListAsync();
+            return await _db.CreatureCards.ToListAsync();
         }
 
         // GET: api/CreatureCards/5
@@ -81,7 +81,7 @@ namespace DmScreenAPI.Controllers
             else
             {
                 var creature = _mapper.Map<CreatureCard>(creatureCard);
-                
+
                 _db.CreatureCards.Add(creature);
                 _db.CreatureAction.AddRange(creature.Actions);
                 _db.SaveChanges();
@@ -104,7 +104,7 @@ namespace DmScreenAPI.Controllers
             }
             _db.SaveChanges();
 
-            return CreatedAtAction("Edit", new { id = idToReturn}, creatureCard);
+            return CreatedAtAction("Edit", new { id = idToReturn }, creatureCard);
         }
 
         // DELETE: api/CreatureCards/5
@@ -117,8 +117,26 @@ namespace DmScreenAPI.Controllers
                 return NotFound();
             }
 
+
+            // remove paired values
+            var accountCreatureCards = _db.AccountCreatureCards.Where(acc => acc.CreatureCardId == id).ToList();
+            _db.RemoveRange(accountCreatureCards);
+            var creatureCardActions = _db.CreatureCardActions.Where(cca => cca.CreatureCardId == id).ToList();
+            _db.RemoveRange(creatureCardActions);
+            var creatureActions = _db.CreatureAction.Where(ca => ca.CreatureCard.CreatureCardId == id).ToList();
+            _db.SaveChanges();
+            // remove the creature
             _db.CreatureCards.Remove(creatureCard);
-            await _db.SaveChangesAsync();
+            try
+            {
+            _db.SaveChanges();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
 
             return creatureCard;
         }
